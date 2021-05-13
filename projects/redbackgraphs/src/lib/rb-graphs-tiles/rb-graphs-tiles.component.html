@@ -1,0 +1,8 @@
+<rb-graphs-tile
+    *ngFor="let item of enhancedData"
+    [style.width.%]="tileWidth"
+    [style.height.%]="tileHeight"
+    [dataitem]="item.dataitem"
+    [color]="item.color"
+    (click)="clickItem(item.dataitem)">
+</rb-graphs-tile>

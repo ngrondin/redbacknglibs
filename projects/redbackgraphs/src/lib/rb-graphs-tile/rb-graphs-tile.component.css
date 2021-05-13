@@ -1,0 +1,56 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    font-size: 1vw;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    background: rgb(4, 36, 56);
+    margin: 0.2vw;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.box:hover {
+    background: rgb(25, 70, 97);
+}
+
+.value {
+    display: flex;
+    padding: 5px;
+    color: lightgray;
+    flex: 1 1 auto;
+    font-size: 3em;
+    align-items: center;
+    justify-content: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.label {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    color: lightgray;
+    flex: 0 1 auto;
+    justify-content:center;
+}
+
+.label span {
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
+
+.colorbar {
+    height: 4px;
+    flex: 0 1 auto;
+}

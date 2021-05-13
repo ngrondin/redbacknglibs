@@ -1,0 +1,54 @@
+import { EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+
+import { DataItem } from '../datamodel';
+
+export class EnhancedData {
+  dataitem: DataItem;
+  color: string;
+
+  constructor(i: DataItem, c: string) {
+    this.dataitem = i;
+    this.color = c;
+  }
+}
+@Component({
+  selector: 'rb-graphs-tiles',
+  templateUrl: './rb-graphs-tiles.component.html',
+  styleUrls: ['./rb-graphs-tiles.component.css']
+})
+export class RbGraphsTilesComponent implements OnInit {
+  @Input('data') data: DataItem[] = [];
+  @Input('cols') cols: number = 3;
+  @Input('rows') rows: number = 3;
+  @Input('palette') palette: string[] = ['orange', 'red', 'blue', 'green'];
+  @Input('colormap') colormap: any;
+  @Output('selectitem') selectitem = new EventEmitter<DataItem>();
+
+  public enhancedData: EnhancedData[] = [];
+
+  constructor() { }
+
+  ngOnInit(): void {
+    for(let i = 0; i < this.data.length && i < (this.rows * this.cols); i++) {
+      let color = this.palette[i % this.palette.length];
+      if(this.colormap != null && this.data[i].code != null) {
+        color = this.colormap[this.data[i].code!];
+      }
+      this.enhancedData.push(new EnhancedData(this.data[i], color));
+    }
+  }
+
+  public get tileWidth() : number {
+    return (100 / this.cols);
+  }
+
+  public get tileHeight() : number {
+    return (100 / this.rows);
+  }
+
+  clickItem(dataitem: DataItem) {
+    this.selectitem.emit(dataitem);
+  }
+
+}
