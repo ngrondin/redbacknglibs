@@ -1,0 +1,25 @@
+.cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5vw;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+}
+
+.cell {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+rb-graphs-tiles {
+    flex: 1 1 0;
+}

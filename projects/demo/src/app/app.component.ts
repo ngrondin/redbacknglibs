@@ -36,6 +36,7 @@ export class AppComponent {
   }
 
   select(event: any) {
-    alert(event.label);
+    //alert(event.label);
+    setTimeout(() => this.data[0].value++, 1000);
   }
 }

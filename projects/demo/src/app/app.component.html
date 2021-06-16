@@ -1,11 +1,32 @@
 <div
-  style="width: 30vw; height: 20vw; background: white;">
-  <rb-graphs-tiles
-    style="width: 100%; height: 100%;"
-    [cols]="3"
-    [rows]="2"
-    [data]="data"
-    [colormap]="colormap"
-    (selectitem)="select($event)">
-  </rb-graphs-tiles>
+  class="cont">
+  <div
+    class="row">
+    <div
+      class="cell">
+      <rb-graphs-tiles
+        [cols]="3"
+        [rows]="2"
+        [data]="data"
+        [colormap]="colormap"
+        (selectitem)="select($event)">
+      </rb-graphs-tiles>
+    </div>
+    <div
+      class="cell">
+      
+    </div>    
+  </div>
+  <div
+    class="row">
+    <div
+      class="cell">
+      
+    </div>
+    <div
+      class="cell">
+      
+    </div>    
+  </div>  
+
 </div>

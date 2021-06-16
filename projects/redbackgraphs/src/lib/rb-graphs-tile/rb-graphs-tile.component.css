@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     justify-content: stretch;
-    font-size: 1vw;
 }
 
 .box {
@@ -24,7 +23,7 @@
 .value {
     display: flex;
     padding: 5px;
-    color: lightgray;
+    color: #bbb;
     flex: 1 1 auto;
     font-size: 3em;
     align-items: center;
@@ -38,7 +37,8 @@
     display: flex;
     flex-direction: row;
     padding: 5px;
-    color: lightgray;
+    color: #999;
+    font-size: 1em;
     flex: 0 1 auto;
     justify-content:center;
 }
@@ -51,6 +51,6 @@
 }
 
 .colorbar {
-    height: 4px;
+    height: 5%;
     flex: 0 1 auto;
 }
