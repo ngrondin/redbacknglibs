@@ -2,7 +2,9 @@
     class="box">
     <div
         class="value">
-        <span>{{value}}</span>
+        <svg [attr.viewBox]="'0 0 ' + width + ' 10'">
+            <text x="0" y="9" fill="#ddd">{{value}}</text>
+        </svg>
     </div>
     <div
         class="label">

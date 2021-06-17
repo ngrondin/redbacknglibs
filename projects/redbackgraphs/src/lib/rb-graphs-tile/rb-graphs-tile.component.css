@@ -33,6 +33,12 @@
     white-space: nowrap;
 }
 
+.value svg {
+    width: 100%;
+    height: 70%;
+    font-size: 11px; 
+}
+
 .label {
     display: flex;
     flex-direction: row;
