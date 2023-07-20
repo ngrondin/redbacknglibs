@@ -2,7 +2,18 @@
     class="box">
     <div
         class="value">
-        <span>{{value}}</span>
+        <svg 
+            [attr.viewBox]="viewbox"
+            width="100%"
+            height="100%"
+            preserveAspectRatio="xMidYMid meet">
+            <text 
+                class="valuesvg"
+                x="0px" 
+                y="90px">
+                {{value}}
+            </text>
+        </svg>
     </div>
     <div
         class="label">

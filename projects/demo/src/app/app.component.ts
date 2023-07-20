@@ -25,7 +25,7 @@ export class AppComponent {
     {
       code: "fourth",
       label: "A fourth",
-      value: 125
+      value: 1250029
     }
   ]
 

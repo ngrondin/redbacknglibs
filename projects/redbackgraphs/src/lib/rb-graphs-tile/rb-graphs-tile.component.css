@@ -22,7 +22,7 @@
 
 .value {
     display: flex;
-    padding: 5px;
+    padding: 0px;
     color: #bbb;
     flex: 1 1 auto;
     font-size: 3em;
@@ -31,6 +31,11 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.valuesvg {
+    fill: #bbb;
+    font-size: 85px;
 }
 
 .label {
