@@ -25,6 +25,7 @@ export class RbGraphsTileComponent implements OnInit {
   }
 
   counter: number = 3;
+  canvas: any;
 
   constructor() { }
 
@@ -54,6 +55,16 @@ export class RbGraphsTileComponent implements OnInit {
 
   get label(): string {
     return this.dataitem.label;
+  }
+
+  get width(): number {
+    let str = this.value.toString();
+    let w = 0;
+    for(let i = 0; i < str.length; i++) {
+      if(str.charAt(i) == '.') w += 3.1;
+      else w += 6.2;
+    }
+    return w;
   }
 
 }
