@@ -9,6 +9,8 @@ import { DataItem } from '../datamodel';
 export class RbGraphsTileComponent implements OnInit {
   @Input('dataitem') dataitem: DataItem = new DataItem("", "", 0);
   @Input('color') color: string = 'orange';
+  @Input('format') format: string | undefined = undefined;
+
 
   widthMap: any = {
     '0': 50,
@@ -21,7 +23,9 @@ export class RbGraphsTileComponent implements OnInit {
     '7': 50,
     '8': 50,
     '9': 50,
-    '.': 25
+    '.': 25,
+    ',':25,
+    '$':50
   }
 
   counter: number = 3;
@@ -41,8 +45,8 @@ export class RbGraphsTileComponent implements OnInit {
   }
 
   get viewbox() : string {
-    let str = this.dataitem.value.toString();
-    let len = 0;
+    let str = this.valuestr;
+    let len = 30;
     for(var c of str) {
       len += this.widthMap[c];
     }
@@ -53,6 +57,16 @@ export class RbGraphsTileComponent implements OnInit {
     return Math.max(this.dataitem.value - this.counter, 0);
   }
 
+  get valuestr(): string {
+    if(this.format != null) {
+      if(this.format == 'currency') {
+        const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',});
+        return formatter.format(this.value)
+      }
+    }
+    return this.value.toString();
+  }
+ 
   get label(): string {
     return this.dataitem.label;
   }

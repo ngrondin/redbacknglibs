@@ -25,7 +25,14 @@
     </div>
     <div
       class="cell">
-      
+      <rb-graphs-tiles
+        [cols]="3"
+        [rows]="2"
+        [data]="data"
+        [colormap]="colormap"
+        [format]="'currency'"
+        (selectitem)="select($event)">
+      </rb-graphs-tiles>
     </div>    
   </div>  
 

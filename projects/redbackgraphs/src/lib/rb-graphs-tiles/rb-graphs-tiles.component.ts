@@ -3,17 +3,9 @@ import { SimpleChanges } from '@angular/core';
 import { OnChanges } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
 
-import { DataItem } from '../datamodel';
+import { DataItem, EnhancedData } from '../datamodel';
 
-export class EnhancedData {
-  dataitem: DataItem;
-  color: string;
 
-  constructor(i: DataItem, c: string) {
-    this.dataitem = i;
-    this.color = c;
-  }
-}
 @Component({
   selector: 'rb-graphs-tiles',
   templateUrl: './rb-graphs-tiles.component.html',
@@ -25,6 +17,7 @@ export class RbGraphsTilesComponent implements OnInit, OnChanges {
   @Input('rows') rows: number = 3;
   @Input('palette') palette: string[] = ['orange', 'red', 'blue', 'green'];
   @Input('colormap') colormap: any;
+  @Input('format') format: string | undefined = undefined;
   @Output('selectitem') selectitem = new EventEmitter<DataItem>();
 
   enhancedData: EnhancedData[] = [];
@@ -43,7 +36,7 @@ export class RbGraphsTilesComponent implements OnInit, OnChanges {
         if(this.colormap != null && this.data[i].code != null) {
           color = this.colormap[this.data[i].code!];
         }
-        this.enhancedData.push(new EnhancedData(this.data[i], color));
+        this.enhancedData.push(new EnhancedData(this.data[i], color, this.format));
       }
     } 
   }

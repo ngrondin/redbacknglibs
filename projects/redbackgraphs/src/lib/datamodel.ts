@@ -9,3 +9,15 @@ export class DataItem {
         this.value = v;
     }
 }
+
+export class EnhancedData {
+    dataitem: DataItem;
+    color: string;
+    format: string|undefined;
+  
+    constructor(i: DataItem, c: string, f: string|undefined) {
+      this.dataitem = i;
+      this.color = c;
+      this.format = f;
+    }
+  }
