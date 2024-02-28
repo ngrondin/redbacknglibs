@@ -3,6 +3,7 @@ import { RedbackgraphsComponent } from './redbackgraphs.component';
 import { RbGraphsTileComponent } from './rb-graphs-tile/rb-graphs-tile.component';
 import { RbGraphsTilesComponent } from './rb-graphs-tiles/rb-graphs-tiles.component';
 import { CommonModule } from '@angular/common';
+import { RbGraphsStackedComponent } from './rb-graphs-stacked/rb-graphs-stacked.component';
 
 
 
@@ -10,7 +11,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     RedbackgraphsComponent,
     RbGraphsTileComponent,
-    RbGraphsTilesComponent
+    RbGraphsTilesComponent,
+    RbGraphsStackedComponent
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { CommonModule } from '@angular/common';
   exports: [
     RedbackgraphsComponent,
     RbGraphsTilesComponent,
-    RbGraphsTileComponent
+    RbGraphsTileComponent,
+    RbGraphsStackedComponent
   ]
 })
 export class RedbackgraphsModule { }

@@ -7,7 +7,9 @@ import { DataItem } from '../datamodel';
   styleUrls: ['./rb-graphs-tile.component.css']
 })
 export class RbGraphsTileComponent implements OnInit {
-  @Input('dataitem') dataitem: DataItem = new DataItem("", "", 0);
+  //@Input('dataitem') dataitem: DataItem = new DataItem("", "", 0);
+  @Input('label') _label: string = "";
+  @Input('value') _value: number = 0;
   @Input('color') color: string = 'orange';
   @Input('format') format: string | undefined = undefined;
 
@@ -54,7 +56,7 @@ export class RbGraphsTileComponent implements OnInit {
   }
 
   get value(): number {
-    return Math.max(this.dataitem.value - this.counter, 0);
+    return Math.max(this._value - this.counter, 0);
   }
 
   get valuestr(): string {
@@ -68,7 +70,7 @@ export class RbGraphsTileComponent implements OnInit {
   }
  
   get label(): string {
-    return this.dataitem.label;
+    return this._label;
   }
 
   get width(): number {

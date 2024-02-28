@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CatItem, DataItem } from 'projects/redbackgraphs/src/lib/datamodel';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'demo';
-  data=[
+  data: DataItem[] = [
     {
       code: "cars",
       label: "Cars",
@@ -19,6 +20,7 @@ export class AppComponent {
       value: 13
     },
     {
+      code:"12",
       label: "Another very long title that it won't fit",
       value: 13.87
     },
@@ -29,11 +31,122 @@ export class AppComponent {
     }
   ]
 
+  catdata: CatItem[] =[
+    {
+      code:"32030399",
+      label:"14 Feb",
+      series:[
+        {
+          code:"123",
+          label:"St Mary",
+          value:2
+        },
+        {
+          code:"124",
+          label:"St George",
+          value:4
+        }        
+      ]
+    },
+    {
+      code:"42030399",
+      label:"15 Feb",
+      series:[
+        {
+          code:"123",
+          label:"St Mary",
+          value:1
+        },
+        {
+          code:"125",
+          label:"Seton",
+          value:3
+        }        
+      ]
+    }, 
+    {
+      code:"52030399",
+      label:"16 Feb",
+      series:[
+        {
+          code:"126",
+          label:"Servite",
+          value:1
+        },
+        {
+          code:"127",
+          label:"Santa",
+          value:2
+        },
+        {
+          code:"125",
+          label:"Seton",
+          value:3
+        },
+        {
+          code:"123",
+          label:"St Mary",
+          value:1
+        }          
+      ]
+    },
+    {
+      code:"62030399",
+      label:"17 Feb",
+      series:[
+        {
+          code:"123",
+          label:"St Mary",
+          value:2
+        },
+        {
+          code:"124",
+          label:"St Geoarge",
+          value:4
+        }        
+      ]
+    },
+    {
+      code:"72030399",
+      label:"18 Feb",
+      series:[
+        {
+          code:"123",
+          label:"St Mary",
+          value:2
+        },
+        {
+          code:"124",
+          label:"St Geoarge",
+          value:4
+        }        
+      ]
+    },
+    {
+      code:"72030399",
+      label:"19 Feb",
+      series:[
+        {
+          code:"125",
+          label:"Seton",
+          value:1
+        },
+        {
+          code:"124",
+          label:"St Geoarge",
+          value:3
+        }        
+      ]
+    }              
+  ]
+
   colormap={
     "cars":"red",
     "planes":"blue",
     "fourth":"pink"
   }
+
+  colorscheme=['#1C4E80', '#0091D5', '#A5D8DD', '#EA6A47', '#7E909A', '#202020']
 
   select(event: any) {
     //alert(event.label);

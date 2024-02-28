@@ -14,14 +14,19 @@
     </div>
     <div
       class="cell">
-      
+
     </div>    
   </div>
   <div
     class="row">
     <div
       class="cell">
-      
+      <rb-graphs-stacked
+        [data]="catdata"
+        [palette]="colorscheme"
+        [xlabel]="'Schools'"
+        [ylabel]="'Values'">
+      </rb-graphs-stacked>     
     </div>
     <div
       class="cell">

@@ -18,7 +18,7 @@ export class RbGraphsTilesComponent implements OnInit, OnChanges {
   @Input('palette') palette: string[] = ['orange', 'red', 'blue', 'green'];
   @Input('colormap') colormap: any;
   @Input('format') format: string | undefined = undefined;
-  @Output('selectitem') selectitem = new EventEmitter<DataItem>();
+  @Output('selectitem') selectitem = new EventEmitter<any>();
 
   enhancedData: EnhancedData[] = [];
 
@@ -36,7 +36,7 @@ export class RbGraphsTilesComponent implements OnInit, OnChanges {
         if(this.colormap != null && this.data[i].code != null) {
           color = this.colormap[this.data[i].code!];
         }
-        this.enhancedData.push(new EnhancedData(this.data[i], color, this.format));
+        this.enhancedData.push(new EnhancedData(this.data[i].code, this.data[i].label, this.data[i].value, color, this.format));
       }
     } 
   }
@@ -50,8 +50,10 @@ export class RbGraphsTilesComponent implements OnInit, OnChanges {
     return (100 / this.rows);
   }
 
-  clickItem(dataitem: DataItem) {
-    this.selectitem.emit(dataitem);
+  clickItem(code: string | undefined) {
+    if(code != null) {
+      this.selectitem.emit({code: code});
+    }
   }
 
 }
