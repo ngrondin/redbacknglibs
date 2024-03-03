@@ -13,25 +13,31 @@ export class RbGraphsStackedComponent implements OnInit {
   @Input('format') format: string | undefined = undefined;
   @Input('ylabel') ylabel: string | undefined = undefined;
   @Input('xlabel') xlabel: string | undefined = undefined;
+  @Input('legendlabel') legendlabel: string | undefined = undefined;
   @Output('selectitem') selectitem = new EventEmitter<any>();
 
   enhancedData: EnhancedCat[] = [];
   maxY: number = 0;
   lines: any[] = [];
   legend: any;
+  animateStep: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
-    
+    setTimeout(() => this.animate(), 700);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.calc();
   }
 
+  getAnimatePercent(): number {
+    return this.animateStep * this.animateStep * (3.0 - (2.0 * this.animateStep));
+  }
+
   getStackFlex(item: EnhancedData) {
-    return Math.floor(item.value * 100);
+    return Math.floor(item.value * 100 * this.getAnimatePercent());
   }
 
   getStackBalanceFlex(cat: EnhancedCat) {
@@ -71,7 +77,7 @@ export class RbGraphsStackedComponent implements OnInit {
         if(catSumY > this.maxY) this.maxY = catSumY;
       }
     }
-
+    this.maxY = this.maxY * 1.1;
     let log = Math.log10(this.maxY);
     let logf = Math.floor(log);
     let lineDelta = Math.pow(10, logf);
@@ -94,6 +100,12 @@ export class RbGraphsStackedComponent implements OnInit {
     }
   }
 
+  animate() {
+    if(this.animateStep < 0.99) {
+      this.animateStep += 0.05;
+      setTimeout(() => this.animate(), 50);
+    }
+  }
 
 
 }

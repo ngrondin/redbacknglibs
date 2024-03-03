@@ -6,7 +6,7 @@
                 <div
                     class="ydim"
                     *ngIf="ylabel != null">
-                    Values
+                    {{ylabel}}
                 </div>
             </td>
             <td
@@ -72,6 +72,10 @@
                 <div
                     class="legendbox">
                     <div
+                        class="legendtitle">
+                        {{legendlabel}}
+                    </div>
+                    <div
                         class="legenditem"
                         *ngFor="let le of legendEntries()">
                         <div
@@ -97,7 +101,7 @@
                     <div
                         class="xlabel"
                         *ngFor="let cat of enhancedData">
-                        {{cat.label}}
+                        <p>{{cat.label}}</p>
                     </div>
                 </div>
             </td> 
@@ -113,7 +117,7 @@
                 <div
                     class="xdim"
                     *ngIf="xlabel != null">
-                    Schools                
+                    {{xlabel}}
                 </div>
             </td>
             <td>
