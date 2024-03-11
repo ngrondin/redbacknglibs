@@ -16,7 +16,7 @@
 }
 
 .box:hover {
-    filter: brightness(150%)
+    opacity: 0.8;
 }
 
 .value {
