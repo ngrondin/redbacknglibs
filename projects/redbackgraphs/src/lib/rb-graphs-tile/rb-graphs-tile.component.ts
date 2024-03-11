@@ -7,12 +7,14 @@ import { DataItem } from '../datamodel';
   styleUrls: ['./rb-graphs-tile.component.css']
 })
 export class RbGraphsTileComponent implements OnInit {
-  //@Input('dataitem') dataitem: DataItem = new DataItem("", "", 0);
   @Input('label') _label: string = "";
   @Input('value') _value: number = 0;
-  @Input('color') color: string = 'orange';
+  @Input('color') _color: string = 'orange';
+  @Input('onColor') _onColor: string = "#bbb";
+  @Input('fullcolor') fullcolor: boolean = false;
   @Input('format') format: string | undefined = undefined;
 
+  _defaultBackColor = "#042438";
 
   widthMap: any = {
     '0': 50,
@@ -81,6 +83,18 @@ export class RbGraphsTileComponent implements OnInit {
       else w += 6.2;
     }
     return w;
+  }
+
+  get color() {
+    return this._color;
+  }
+
+  get backColor() {
+    return this.fullcolor ? this.color : this._defaultBackColor;
+  }
+
+  get fontColor() {
+    return this._onColor || '#bbb';
   }
 
 }

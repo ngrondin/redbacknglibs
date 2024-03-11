@@ -30,17 +30,17 @@ export class EnhancedData {
   value: number;
   valuefordisplay: number;
   color: string;
+  onColor: string | undefined;
   format: string|undefined;
-  //dataitem: DataItem | undefined;
 
-  constructor(c: string | undefined, l:string, v: number, col: string, f: string|undefined/*, di: DataItem | undefined*/) {
+  constructor(c: string | undefined, l:string, v: number, col: string, oncol: string | undefined, f: string|undefined) {
     this.code = c;
     this.label = l;
     this.value = v;
     this.valuefordisplay = v;
     this.color = col;
+    this.onColor = oncol;
     this.format = f;
-    //this.dataitem = di;
   }
 }
 
@@ -48,12 +48,10 @@ export class EnhancedCat {
   code: string | undefined;
   label: string;
   series: EnhancedData[];
-  //catitem: CatItem | undefined;
 
-  constructor(c: string | undefined, l: string/*, ci: CatItem | undefined*/) {
+  constructor(c: string | undefined, l: string) {
     this.code = c;
     this.label = l;
     this.series = [];
-    //this.catitem = ci;
   }
 }

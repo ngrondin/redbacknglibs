@@ -1,7 +1,9 @@
 <div
-    class="box">
+    class="box"
+    [style.background]="backColor">
     <div
-        class="value">
+        class="value"
+        [style.fill]="fontColor">
         <svg 
             [attr.viewBox]="viewbox"
             width="100%"
@@ -16,7 +18,8 @@
         </svg>
     </div>
     <div
-        class="label">
+        class="label"
+        [style.color]="fontColor">
         <span>{{label}}</span>
     </div>
     <div

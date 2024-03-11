@@ -16,8 +16,10 @@ export class RbGraphsTilesComponent implements OnInit, OnChanges {
   @Input('cols') cols: number = 3;
   @Input('rows') rows: number = 3;
   @Input('palette') palette: string[] = ['orange', 'red', 'blue', 'green'];
-  @Input('colormap') colormap: any;
+  @Input('colormap') colormap: {[key: string]: string} | undefined;
+  @Input('valuecolorrange') valuecolorrange: {from: number, to:number, color:string, oncolor:string}[] | undefined;
   @Input('format') format: string | undefined = undefined;
+  @Input('fullcolor') fullcolor: boolean = false;
   @Output('selectitem') selectitem = new EventEmitter<any>();
 
   enhancedData: EnhancedData[] = [];
@@ -32,11 +34,23 @@ export class RbGraphsTilesComponent implements OnInit, OnChanges {
     this.enhancedData = [];
     if(this.data != null) {
       for(let i = 0; i < this.data.length && i < (this.rows * this.cols); i++) {
-        let color = this.palette[i % this.palette.length];
-        if(this.colormap != null && this.data[i].code != null) {
+        let value: number = this.data[i].value;
+        let color = null;
+        let onColor = undefined;
+        if(this.valuecolorrange != null) { 
+          let range = this.valuecolorrange.find((rng) => rng.from <= value && rng.to >= value);
+          if(range != null) {
+            color = range.color;
+            onColor = range.oncolor;
+          }
+        }
+        if(color == null && this.colormap != null && this.data[i].code != null) {
           color = this.colormap[this.data[i].code!];
         }
-        this.enhancedData.push(new EnhancedData(this.data[i].code, this.data[i].label, this.data[i].value, color, this.format));
+        if(color == null) {
+          color = this.palette[i % this.palette.length]
+        }
+        this.enhancedData.push(new EnhancedData(this.data[i].code, this.data[i].label, value, color, onColor, this.format));
       }
     } 
   }

@@ -31,114 +31,7 @@ export class AppComponent implements OnInit  {
     }
   ]
 
-  catdata: CatItem[] = []; /*[
-    {
-      code:"32030399",
-      label:"14 Feb",
-      series:[
-        {
-          code:"123",
-          label:"St Mary",
-          value:2
-        },
-        {
-          code:"124",
-          label:"St George",
-          value:4
-        }        
-      ]
-    },
-    {
-      code:"42030399",
-      label:"15 Feb",
-      series:[
-        {
-          code:"123",
-          label:"St Mary",
-          value:1
-        },
-        {
-          code:"125",
-          label:"Seton",
-          value:3
-        }        
-      ]
-    }, 
-    {
-      code:"52030399",
-      label:"16 Feb",
-      series:[
-        {
-          code:"126",
-          label:"Servite",
-          value:1
-        },
-        {
-          code:"127",
-          label:"Santa",
-          value:2
-        },
-        {
-          code:"125",
-          label:"Seton",
-          value:3
-        },
-        {
-          code:"123",
-          label:"St Mary",
-          value:1
-        }          
-      ]
-    },
-    {
-      code:"62030399",
-      label:"17 Feb",
-      series:[
-        {
-          code:"123",
-          label:"St Mary",
-          value:2
-        },
-        {
-          code:"124",
-          label:"St Geoarge",
-          value:4
-        }        
-      ]
-    },
-    {
-      code:"72030399",
-      label:"18 Feb",
-      series:[
-        {
-          code:"123",
-          label:"St Mary",
-          value:2
-        },
-        {
-          code:"124",
-          label:"St Geoarge",
-          value:4
-        }        
-      ]
-    },
-    {
-      code:"72030399",
-      label:"19 Feb",
-      series:[
-        {
-          code:"125",
-          label:"Seton",
-          value:1
-        },
-        {
-          code:"124",
-          label:"St George",
-          value:3
-        }        
-      ]
-    }              
-  ]*/
+  catdata: CatItem[] = []; 
 
   colormap={
     "cars":"red",
@@ -147,6 +40,12 @@ export class AppComponent implements OnInit  {
   }
 
   colorscheme=['#1C4E80', '#0091D5', '#A5D8DD', '#EA6A47', '#7E909A', '#202020']
+
+  valuecolorrange = [
+    {from:0, to:13.5, color:"blue", oncolor:"orange"},
+    {from:13.5, to:20, color:"yellow", oncolor:"black"},
+    {from:20, to:4000000, color:"red", oncolor:"violet"},
+  ]
 
   ngOnInit(): void {
     let catCount = 20;

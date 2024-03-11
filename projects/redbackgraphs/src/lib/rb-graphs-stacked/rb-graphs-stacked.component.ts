@@ -70,7 +70,7 @@ export class RbGraphsStackedComponent implements OnInit {
               this.legend[code].color = this.palette[Object.keys(this.legend).length % this.palette.length];
             }
           }
-          const enhancedItem = new EnhancedData(item.code, item.label, item.value, this.legend[code].color, undefined);
+          const enhancedItem = new EnhancedData(item.code, item.label, item.value, this.legend[code].color, undefined, undefined);
           enhancedCat.series.push(enhancedItem);
           catSumY += item.value;
         }
