@@ -10,7 +10,7 @@ export class RbGraphsTileComponent implements OnInit {
   @Input('label') _label: string = "";
   @Input('value') _value: number = 0;
   @Input('color') _color: string = 'orange';
-  @Input('onColor') _onColor: string = "#bbb";
+  @Input('onColor') _onColor: string | undefined;
   @Input('fullcolor') fullcolor: boolean = false;
   @Input('format') format: string | undefined = undefined;
 

@@ -8,17 +8,15 @@
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
-    /*background: rgb(4, 36, 56);*/
     margin: 0.2vw;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     cursor: pointer;
     overflow: hidden;
     border-radius: 3px;
-    /*filter: brightness(85%);*/
 }
 
 .box:hover {
-    filter: brightness(200%)
+    filter: brightness(150%)
 }
 
 .value {
