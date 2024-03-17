@@ -1,0 +1,45 @@
+.legendbox {
+    display: flex;
+    flex-direction: column;
+    background-color: #eee;
+    padding: 3px;
+    margin: 3px;
+    border-radius: 4px;
+}
+
+.legendtitle {
+    font-size: 0.8em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #666;
+}
+
+.legendbody-v {
+    display: flex;
+    flex-direction: column;
+}
+
+.legendbody-h {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.legenditem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.legendcolor {
+    width: 12px;
+    height: 12px;
+    margin: 3px;
+}
+
+.legendlabel {
+    font-size: 0.6em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: gray;
+}

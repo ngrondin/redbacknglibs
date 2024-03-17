@@ -1,0 +1,204 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    height:100%;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+table{
+    width: 100%;
+    height: 100%;
+}
+
+td {
+    position: relative;
+    padding: 0px;
+}
+
+.mainrow{
+    height: 100%;
+}
+
+
+.maincell{
+    width: 100%;
+    position: relative;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.grid {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.gridline {
+    position: relative;
+    display: flex;
+    flex-basis: 0;
+    flex-direction: row;
+    flex: 1 1 auto;
+    border-left: 1px solid lightgray;
+}
+
+.data {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+
+.ylabelcell {
+    height: 100%;
+}
+
+.ylabelcol {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+}
+
+.ylabel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 0.8em;
+    height: 0px;
+    justify-content: end;
+    padding-right: 3px;
+}
+
+.ylabel p {
+    margin: 0px;
+    max-width: 8vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.xlabels { 
+    display: flex;
+    flex-direction: row-reverse;
+    flex: 0 0 auto;
+}
+
+.xlabel{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: start;
+    font-size: 0.8em;
+    overflow: hidden;
+    width: 0px; 
+}
+
+.xlabel p {
+    margin: 0px;
+    max-height: 8vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.xlabelvert {
+    text-orientation: sideways-right;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+.cat {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    /*padding: 10px 0px;*/
+}
+
+.colcontainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.col {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.stackcontainer {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 100%;
+    align-items: center;
+}
+
+rb-graphs-part-bar {
+    max-height: 50px;
+    height: 80%;
+}
+
+.valuecontainer {
+    width: 0px;
+    height: 0px;
+    position: relative;
+}
+
+.valueonbar {
+    position: absolute;
+    margin: 0px;
+    line-height: 10px;
+    top: -5px;
+    right: 3px;
+    font-size:0.7em;
+    z-index: 2;
+    color: white;
+}
+
+.valueafterbar {
+    position: absolute;
+    margin: 0px;
+    line-height: 10px;
+    top: -5px;
+    left: 3px;
+    font-size:0.7em;
+    z-index: 2;
+    color: black;
+}
+
+.targets {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.target {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+    max-height: 55px;
+    height: 90%;
+    border-right: 3px solid rgb(132, 0, 0);
+}
+

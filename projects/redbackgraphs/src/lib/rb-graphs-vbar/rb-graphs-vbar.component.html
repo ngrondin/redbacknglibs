@@ -1,0 +1,114 @@
+<rb-graphs-chartframe
+    [xlabel]="catOrSeriesLabel"
+    [ylabel]="valuelabel"
+    [legendlabel]="serieslabel"
+    [legendposition]="barLegendPosition"
+    [legend]="legend">
+    <table>    
+        <tr
+            class="mainrow">
+            <td
+                class="ylabelcell">
+                <div
+                    class="ylabelcol">        
+                    <div
+                        class="ylabel"
+                        *ngFor="let line of lines"
+                        [style.flex-grow]="line.flex"
+                        [style.flex-shrink]="line.flex">
+                        <p>{{line.label}}</p>
+                    </div>                                            
+                </div>
+            </td>
+            <td
+                class="maincell">
+                <div
+                    class="grid">           
+                    <div
+                        class="gridline"
+                        *ngFor="let line of lines"
+                        [style.flex-grow]="line.flex"
+                        [style.flex-shrink]="line.flex">
+                    </div>
+                </div>
+                <div
+                    class="data">
+                    <div
+                        class="cat"
+                        *ngFor="let cat of displayCats"
+                        [style.background]="cat.color">
+                        <div
+                            class="colcontainer"
+                            *ngIf="stacked == false">
+                            <div
+                                class="col"
+                                *ngFor="let item of cat.series">
+                                <div
+                                    [style.flex-grow]="getBarBalanceFlex(item)">
+                                </div>                          
+                                <rb-graphs-part-bar
+                                    [color]="item.color"
+                                    [label]="item.label"
+                                    [value]="item.value"
+                                    [format]="format"
+                                    [animatestep]="animateStep">
+                                </rb-graphs-part-bar>
+                            </div>
+                        </div>
+                        <div
+                            class="stackcontainer"
+                            *ngIf="stacked == true">
+                            <div
+                                [style.flex-grow]="getStackBalanceFlex(cat)">
+                            </div>                          
+                            <rb-graphs-part-bar
+                                *ngFor="let item of cat.series"
+                                [color]="item.color"
+                                [label]="item.label"
+                                [value]="item.value"
+                                [format]="format"
+                                [animatestep]="animateStep">
+                            </rb-graphs-part-bar>
+                        </div>                        
+                    </div>                    
+                </div>
+                <div
+                    *ngIf="stacked == false"
+                    class="targets">
+                    <div
+                        class="cat"
+                        *ngFor="let cat of displayCats">
+                        <div
+                            class="col"
+                            *ngFor="let item of cat.series">
+                            <div
+                                [style.flex-grow]="getTargetBalanceFlex(item)"
+                                [style.flex-shrink]="getTargetBalanceFlex(item)">
+                            </div>                          
+                            <div
+                                class="target"
+                                *ngIf="item.target != null"
+                                [style.flex-grow]="getTargetFlex(item)"
+                                [style.flex-shrink]="getTargetFlex(item)">
+                            </div>                        
+                        </div>
+                    </div>                    
+                </div>                
+            </td>                          
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <div
+                    class="xlabels">
+                    <div
+                        [class]="'xlabel' + (verticalxlabel ? ' xlabelvert' : '')"
+                        *ngFor="let label of catOrSeriesLabels">
+                        <p>{{label}}</p>
+                    </div>
+                </div>
+            </td>                       
+        </tr>                
+    </table>
+</rb-graphs-chartframe>

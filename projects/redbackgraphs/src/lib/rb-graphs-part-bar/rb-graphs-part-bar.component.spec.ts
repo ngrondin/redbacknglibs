@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RbGraphsStackedComponent } from './rb-graphs-stacked.component';
+import { RbGraphsPartBarComponent } from './rb-graphs-part-bar.component';
 
-describe('RbGraphStackedComponent', () => {
-  let component: RbGraphsStackedComponent;
-  let fixture: ComponentFixture<RbGraphsStackedComponent>;
+describe('RbGraphsPartBarComponent', () => {
+  let component: RbGraphsPartBarComponent;
+  let fixture: ComponentFixture<RbGraphsPartBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RbGraphsStackedComponent ]
+      declarations: [ RbGraphsPartBarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RbGraphsStackedComponent);
+    fixture = TestBed.createComponent(RbGraphsPartBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,44 @@
+<div
+    class="ydim"
+    *ngIf="ylabel != null">
+    {{ylabel}}
+</div>
+<div
+    class="maincol">
+    <div
+        class="toplegend">
+        <rb-graphs-legend
+            *ngIf="legendposition == 'top'"
+            [items]="legend"
+            [label]="legendlabel"
+            [row]="true">
+        </rb-graphs-legend>    
+    </div>
+    <div
+        class="container">
+        <ng-content></ng-content>
+    </div>
+    <div
+        class="xdim"
+        *ngIf="xlabel != null">
+        {{xlabel}}
+    </div>
+    <div
+        class="bottomlegend">
+        <rb-graphs-legend
+            *ngIf="legendposition == 'bottom'"
+            [items]="legend"
+            [label]="legendlabel"
+            [row]="true">
+        </rb-graphs-legend>    
+    </div>
+</div>
+<div
+    class="rightlegend">
+    <rb-graphs-legend
+        *ngIf="legendposition == 'right'"
+        [items]="legend"
+        [label]="legendlabel"
+        [row]="false">
+    </rb-graphs-legend>    
+</div>

@@ -1,0 +1,173 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    height:100%;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.ylabelcell {
+    height: 100%;
+}
+
+.ylabelcol {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ylabel {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 0;
+    align-items: end;
+    justify-content: end;
+    font-size: 0.8em;
+    margin-bottom: 1px;
+    height: 0px;
+    /*overflow: hidden;*/
+}
+
+.ylabel p {
+    margin: 0px;
+}
+
+table{
+    width: 100%;
+    height: 100%;
+}
+
+td {
+    position: relative;
+    padding: 0px;
+}
+
+.mainrow{
+    height: 100%;
+}
+
+
+.maincell{
+    width: 100%;
+    position: relative;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+
+.grid {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.gridline {
+    position: relative;
+    display: flex;
+    flex-basis: 0;
+    flex-direction: row;
+    flex: 1 1 auto;
+    border-bottom: 1px solid lightgray;
+}
+
+.data {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+
+.xlabels { 
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+}
+
+.xlabel{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    overflow: hidden;
+    width: 0px; 
+}
+
+.xlabel p {
+    margin: 0px;
+    max-height: 8vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.xlabelvert {
+    text-orientation: sideways-right;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    justify-content: end;
+}
+
+.cat {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row;
+    /*padding: 0px 10px;*/
+}
+
+.colcontainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.col {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stackcontainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+rb-graphs-part-bar {
+    max-width: 50px;
+    width: 80%;
+}
+
+.targets {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.target {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    max-width: 55px;
+    width: 90%;
+    border-top: 3px solid rgb(132, 0, 0);
+}
+

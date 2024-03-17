@@ -1,0 +1,60 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    height:100%;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.maincol {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.toplegend {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    min-height: 5px;
+}
+
+.rightlegend {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    justify-content: center;
+    min-width: 5px;
+}
+
+.bottomlegend {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.xdim {
+    font-size: 0.9em;
+    text-align: center;
+    height: 1.6em;
+}
+
+.ydim {
+    width: 1.6em;
+    display: flex;
+    font-size: 0.9em;
+    text-orientation: sideways-right;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    line-height: 1.6em;
+    align-items: center;
+    justify-content: center;
+}
+

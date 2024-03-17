@@ -1,5 +1,6 @@
 import { Component, HostBinding, HostListener, Input, OnInit, Output } from '@angular/core';
 import { DataItem } from '../datamodel';
+import { Formatter } from '../utils';
 
 @Component({
   selector: 'rb-graphs-tile',
@@ -62,13 +63,7 @@ export class RbGraphsTileComponent implements OnInit {
   }
 
   get valuestr(): string {
-    if(this.format != null) {
-      if(this.format == 'currency') {
-        const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',});
-        return formatter.format(this.value)
-      }
-    }
-    return this.value.toString();
+    return Formatter.format(this.value, this.format);
   }
  
   get label(): string {

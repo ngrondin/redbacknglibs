@@ -7,40 +7,109 @@
       <rb-graphs-tiles
         [cols]="3"
         [rows]="2"
-        [data]="data"
+        [data]="singlecatdata"
         [valuecolorrange]="valuecolorrange"
         [fullcolor]="true"
         (selectitem)="select($event)">
-      </rb-graphs-tiles>
-    </div>
-    <div
-      class="cell">
-
-    </div>    
-  </div>
-  <div
-    class="row">
-    <div
-      class="cell">
-      <rb-graphs-stacked
-        [data]="catdata"
-        [palette]="colorscheme"
-        [xlabel]="'Schools'"
-        [ylabel]="'Values'"
-        [legendlabel]="'Type'">
-      </rb-graphs-stacked>     
+      </rb-graphs-tiles>       
     </div>
     <div
       class="cell">
       <rb-graphs-tiles
         [cols]="3"
         [rows]="2"
-        [data]="data"
+        [data]="singlecatdata"
         [colormap]="colormap"
         [format]="'currency'"
         (selectitem)="select($event)">
-      </rb-graphs-tiles>
+      </rb-graphs-tiles>      
+    </div>    
+  </div>
+  <div
+    class="row">
+    <div
+      class="cell">
+      <rb-graphs-vbar
+        [data]="multicatdata"
+        [palette]="colorscheme"
+        [catlabel]="'Dates'"
+        [valuelabel]="'Count'"
+        [serieslabel]="'Schools'"
+        [legendposition]="'bottom'"
+        [stacked]="true"
+        (selectitem)="select($event)">
+      </rb-graphs-vbar>      
+    </div>
+    <div
+      class="cell">
+      <rb-graphs-vbar
+        [data]="multicatdata"
+        [palette]="colorscheme"
+        [catlabel]="'Dates'"
+        [valuelabel]="'Count'"
+        [serieslabel]="'Schools'"
+        [legendposition]="'bottom'"
+        [verticalxlabels]="true"
+        (selectitem)="select($event)">
+      </rb-graphs-vbar>        
     </div>    
   </div>  
+  <div
+    class="row">
+    <div
+      class="cell">
+      <rb-graphs-hbar
+        [data]="multicatdata"
+        [palette]="colorscheme"
+        [catlabel]="'Dates'"
+        [valuelabel]="'Count'"
+        [serieslabel]="'Schools'"
+        [legendposition]="'right'"
+        [stacked]="true"
+        (selectitem)="select($event)">
+      </rb-graphs-hbar>  
+    </div>
+    <div
+      class="cell">   
+      <rb-graphs-hbar
+        [data]="multicatdata"
+        [palette]="colorscheme"
+        [catlabel]="'Dates'"
+        [valuelabel]="'Count'"
+        [serieslabel]="'Schools'"
+        [legendposition]="'top'"
+        [valueonbar]="true"
+        (selectitem)="select($event)">
+      </rb-graphs-hbar>  
+    </div>    
+  </div>
 
+  <div
+    class="row">
+    <div
+      class="cell">
+      <rb-graphs-vbar
+        [data]="data"
+        [palette]="colorscheme"
+        [valuelabel]="'Count'"
+        [serieslabel]="'Type'"
+        [legendposition]="'bottom'"
+        [format]="'percent'"
+        (selectitem)="select($event)">
+      </rb-graphs-vbar> 
+    </div>
+    <div
+      class="cell">   
+      <rb-graphs-hbar
+        [data]="data"
+        [palette]="colorscheme"
+        [valuelabel]="'Count'"
+        [serieslabel]="'Type'"
+        [legendposition]="'bottom'"
+        [format]="'currency'"
+        [valueonbar]="true"
+        (selectitem)="select($event)">
+      </rb-graphs-hbar>
+    </div>    
+  </div>
 </div>

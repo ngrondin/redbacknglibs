@@ -1,0 +1,23 @@
+<div
+    class="legendbox">
+    <div
+        class="legendtitle">
+        {{label}}
+    </div>
+    <div
+        [class]="row == true ? 'legendbody-h' : 'legendbody-v'">
+        <div
+            class="legenditem"
+            *ngFor="let item of items">
+            <div
+                class="legendcolor"
+                [style.background]="item.color">
+            </div>
+            <div
+                class="legendlabel">
+                {{item.label}}
+            </div>
+        </div>     
+    </div>
+             
+</div>
