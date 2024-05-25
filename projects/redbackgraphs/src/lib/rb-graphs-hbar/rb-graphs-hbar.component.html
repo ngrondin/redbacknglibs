@@ -62,7 +62,8 @@
                                     [label]="item.label"
                                     [value]="item.value"
                                     [format]="format"
-                                    [animatestep]="animateStep">
+                                    [animatestep]="animateStep"
+                                    (click)="clickItem(cat.code, item.code)">
                                 </rb-graphs-part-bar>                        
                             </div>
                         </div>
@@ -78,7 +79,8 @@
                                 [label]="item.label"
                                 [value]="item.value"
                                 [format]="format"
-                                [animatestep]="animateStep">
+                                [animatestep]="animateStep"
+                                (click)="clickItem(cat.code, item.code)">
                             </rb-graphs-part-bar>
                         </div>                          
                     </div>                    

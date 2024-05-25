@@ -8,11 +8,15 @@ export abstract class RbGraphsAll implements OnInit {
   @Input('format') format: string | undefined = undefined;
   @Output('selectitem') selectitem = new EventEmitter<any>();
   @Input('data') set data(value: CatItem[] | DataItem[]) {
-    if(value.length > 0 && !value[0].hasOwnProperty('series')) {
-      let rootCat = new CatItem("", "", (value as DataItem[]));
-      this.cats = [rootCat];
+    if(value != null) {
+      if(value.length > 0 && !value[0].hasOwnProperty('series')) {
+        let rootCat = new CatItem("", "", (value as DataItem[]));
+        this.cats = [rootCat];
+      } else {
+        this.cats = (value as CatItem[]);
+      }        
     } else {
-      this.cats = (value as CatItem[]);
+      this.cats = [];
     }
   }
 
@@ -37,7 +41,7 @@ export abstract class RbGraphsAll implements OnInit {
   abstract calc(): any;
 
   clickItem(cat: string | null | undefined, code: string | undefined) {
-    if(code != null && cat != null) {
+    if(code != null) {
       this.selectitem.emit({cat: cat, code: code});
     }
   }
