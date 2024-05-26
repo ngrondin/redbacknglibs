@@ -13,7 +13,11 @@ export class Formatter {
     }
 
     static formatDecimal(value: number, dec: number) {
-        return value.toFixed(dec);
+        try {
+            return value.toFixed(dec);
+        } catch(err) {
+            return "-";
+        }
     }
 
     static formatCurrency(value: number): string {
