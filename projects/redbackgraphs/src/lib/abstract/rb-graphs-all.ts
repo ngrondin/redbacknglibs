@@ -5,6 +5,7 @@ import { CatItem, DataItem, DisplayCat } from "../datamodel";
 export abstract class RbGraphsAll implements OnInit {
   @Input('palette') palette: string[] = ['orange', 'red', 'blue', 'green'];
   @Input('colormap') colormap: any;
+  @Input('singlecolor') singlecolor: string | undefined = undefined;
   @Input('format') format: string | undefined = undefined;
   @Output('selectitem') selectitem = new EventEmitter<any>();
   @Input('data') set data(value: CatItem[] | DataItem[]) {

@@ -1,6 +1,7 @@
 <div
     class="legendbox">
     <div
+        *ngIf="label != null"
         class="legendtitle">
         {{label}}
     </div>
@@ -10,9 +11,15 @@
             class="legenditem"
             *ngFor="let item of items">
             <div
-                class="legendcolor"
+                *ngIf="item.shape == 0"
+                class="legendsquare"
                 [style.background]="item.color">
             </div>
+            <div
+                *ngIf="item.shape == 1"
+                class="legendline"
+                [style.background]="item.color">
+            </div>            
             <div
                 class="legendlabel">
                 {{item.label}}

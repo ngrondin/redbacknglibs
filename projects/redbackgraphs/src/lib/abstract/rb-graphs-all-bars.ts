@@ -1,6 +1,6 @@
 import { Component, Directive, Input, OnInit } from "@angular/core";
 import { RbGraphsAll } from "./rb-graphs-all";
-import { DispayLegendItem, DisplayCat, DisplayData, DisplayGridLine } from "../datamodel";
+import { CodeLabelColor, DispayLegendItem, DisplayCat, DisplayData, DisplayGridLine, LegendShape } from "../datamodel";
 import { Formatter } from "../utils";
 
 @Component({template: ''})
@@ -10,9 +10,12 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     @Input('serieslabel') serieslabel: string | undefined = undefined;
     @Input('stacked') stacked: boolean = false;
     @Input('legendposition') legendposition: string = 'right';
+    @Input('valuetargetlegend') valuetargetlegend: any;
   
     lines: DisplayGridLine[] = []
+    uniqueCodes: CodeLabelColor[] = [];
     legend: DispayLegendItem[] = [];
+    legendLabel: string | undefined = undefined;
     topValue: number = 0;
     
     constructor() {
@@ -36,11 +39,13 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     }
 
     get barLegendPosition() {
-        if(this.displayCats.length == 1 && this.stacked == false) {
+        /*if(this.displayCats.length == 1 && this.stacked == false) {
+        //if(this.legend.length > 0) {
           return 'none';
         } else {
           return this.legendposition;
-        }
+        }*/
+       return this.legendposition
     }
 
     getStackBalanceFlex(cat: DisplayCat) {
@@ -60,25 +65,28 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     }    
 
     calc() {
-      this.calcLegend();
+      this.calcUniqueCodes();
       this.calcBars();
+      this.calcLegend();
       this.calcLines();
     }
 
-    calcLegend() {
-      this.legend = [];
+    calcUniqueCodes() {
+      this.uniqueCodes = [];
       for(let cat of this.cats) {
         for(let item of cat.series) {
           let code = item.code ?? "";
           let color = "transparent";
-          let legendItem = this.legend.find(l => l.code == code);
-          if(legendItem == null) {
-            if(this.colormap != null) {
+          let unique = this.uniqueCodes.find(l => l.code == code);
+          if(unique == null) {
+            if(this.singlecolor != null) {
+              color = this.singlecolor;
+            } else if(this.colormap != null) {
               color = this.colormap[code];
             } else {
-              color = this.palette[Object.keys(this.legend).length % this.palette.length];
+              color = this.palette[Object.keys(this.uniqueCodes).length % this.palette.length];
             }
-            this.legend.push(new DispayLegendItem(code, item.label, color)); 
+            this.uniqueCodes.push(new CodeLabelColor(code, item.label, color)); 
           }
         }  
       }
@@ -92,8 +100,8 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
         const displayCat = new DisplayCat(cat.code, cat.label);
         displayCat.color = altcolors[this.displayCats.length % 2];
         let catValSum = 0;
-        for(let le of this.legend) {
-          let items = cat.series.filter(i => i.code == le.code);
+        for(let clc of this.uniqueCodes) {
+          let items = cat.series.filter(i => i.code == clc.code);
           let value = 0;
           let target = null;
           for(let item of items) {
@@ -103,7 +111,7 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
               target += item.target;
             }
           }
-          const displayItem = new DisplayData(le.code, le.label, value, le.color, undefined);
+          const displayItem = new DisplayData(clc.code, clc.label, value, clc.color, undefined);
           if(target != null) displayItem.target = target;
           displayCat.series.push(displayItem);
           catValSum += value;
@@ -115,6 +123,21 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
       }
       this.topValue = max * 1.1;
       this.calcLines();
+    }
+
+    calcLegend() {
+      this.legend = [];
+      if(this.displayCats.length > 1 || this.stacked == true) {
+        this.legendLabel = this.serieslabel;
+        this.legend = this.uniqueCodes.map(clc => new DispayLegendItem(clc.label, clc.color, LegendShape.Square));
+      } else if(this.valuetargetlegend != null) {
+        this.legendLabel = undefined;
+        let valueColor = this.singlecolor != null ? this.singlecolor : (this.colormap != null ? this.colormap[Object.keys(this.colormap)[0]] : this.palette[0]);
+        this.legend = [
+          new DispayLegendItem(this.valuetargetlegend.value, valueColor, LegendShape.Square),
+          new DispayLegendItem(this.valuetargetlegend.target, "#880000", LegendShape.Line)
+        ]
+      }
     }
 
     calcLines() {

@@ -57,7 +57,7 @@ export class DisplayCat {
   }
 }
 
-export class DispayLegendItem {
+export class CodeLabelColor {
   code: string | undefined;
   label: string;
   color: string;
@@ -66,6 +66,23 @@ export class DispayLegendItem {
     this.code = c;
     this.label = l;
     this.color = col;
+  }
+}
+
+export enum LegendShape {
+  Square,
+  Line
+}
+
+export class DispayLegendItem {
+  label: string;
+  color: string;
+  shape: LegendShape
+
+  constructor(l:string, col: string, s: LegendShape) {
+    this.label = l;
+    this.color = col;
+    this.shape = s;
   }
 }
 

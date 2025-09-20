@@ -100,6 +100,7 @@ td {
     font-size: 0.8em;
     overflow: hidden;
     width: 0px; 
+    padding-top: 3px;
 }
 
 .xlabel p {

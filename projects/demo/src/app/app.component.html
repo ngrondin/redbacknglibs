@@ -90,9 +90,10 @@
       class="cell">
       <rb-graphs-vbar
         [data]="data"
-        [palette]="colorscheme"
+        [singlecolor]="'#1C4E80'"
         [valuelabel]="'Count'"
         [serieslabel]="'Type'"
+        [valuetargetlegend]="{value:'Vehicle Count', target:'Maximum Acceptable'}"
         [legendposition]="'bottom'"
         [format]="'percent'"
         (selectitem)="select($event)">
