@@ -18,11 +18,13 @@ export class CatItem {
   code: string | undefined;
   label: string;
   series: DataItem[];
+  color: string | undefined;
 
-  constructor(c: string | undefined, l: string, s: DataItem[]) {
+  constructor(c: string | undefined, l: string, s: DataItem[], clr?: string | undefined) {
     this.code = c;
-    this.label = l;;
+    this.label = l;
     this.series = s;
+    this.color = clr;
   }
 }
 

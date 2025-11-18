@@ -38,10 +38,13 @@ export class AppComponent implements OnInit  {
   singlecatdata: CatItem[] = [{
     code:"",
     label:"",
-    series: this.data
+    series: this.data,
+    color: undefined
   }]; 
 
   multicatdata: CatItem[] = [];
+
+  timedata: DataItem[] = [];
 
   colormap={
     "cars":"red",
@@ -74,7 +77,19 @@ export class AppComponent implements OnInit  {
       }
       let catcode = c;
       let catlabel = (new Date((new Date()).getTime() + ((c - 30) * 24 * 60 * 60 * 1000))).toISOString();
-      this.multicatdata.push({code: catcode.toString(), label: catlabel, series: series});
+      let catcolor = undefined; //c < 4 ? '#ff000088' : '#0000ff88';
+      this.multicatdata.push({code: catcode.toString(), label: catlabel, series: series, color: catcolor});
+    }
+
+    let timeCount = 8;
+    for(let i = 0; i < timeCount; i++) {
+      let dt = (new Date((new Date()).getTime() + ((i - 30) * 24 * 60 * 60 * 1000)))
+      this.timedata.push({
+        code: dt.toISOString(),
+        label: dt.toISOString(),
+        value: 10*Math.random(),
+        target: undefined
+      });
     }
   }
 

@@ -98,7 +98,7 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
       let altcolors = this.stacked ? ["transparent"] : ["transparent", "#ccc5"];
       for(let cat of this.cats) {
         const displayCat = new DisplayCat(cat.code, cat.label);
-        displayCat.color = altcolors[this.displayCats.length % 2];
+        displayCat.color = cat.color != null ? cat.color : altcolors[this.displayCats.length % 2];
         let catValSum = 0;
         for(let clc of this.uniqueCodes) {
           let items = cat.series.filter(i => i.code == clc.code);
