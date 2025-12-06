@@ -3,7 +3,8 @@
     [ylabel]="valuelabel"
     [legendlabel]="legendLabel"
     [legendposition]="barLegendPosition"
-    [legend]="legend">
+    [legend]="legend"
+    (filter)="setFilter($event)">
     <table>    
         <tr
             class="mainrow">
@@ -44,14 +45,14 @@
                                 class="col"
                                 *ngFor="let item of cat.series">
                                 <div
-                                    [style.flex-grow]="getBarBalanceFlex(item)">
+                                    [style.flex-grow]="getBalanceFlex(item.value)">
                                 </div>                          
                                 <rb-graphs-part-bar
                                     [color]="item.color"
-                                    [label]="item.label"
+                                    [label]="item.label || ''"
                                     [value]="item.value"
                                     [format]="format"
-                                    [animatestep]="animateStep"
+                                    [animatestep]="animatePercent"
                                     (click)="clickItem(cat.code, item.code)">
                                 </rb-graphs-part-bar>
                             </div>
@@ -65,13 +66,13 @@
                             <rb-graphs-part-bar
                                 *ngFor="let item of cat.series"
                                 [color]="item.color"
-                                [label]="item.label"
+                                [label]="item.label || ''"
                                 [value]="item.value"
                                 [format]="format"
-                                [animatestep]="animateStep"
+                                [animatestep]="animatePercent"
                                 (click)="clickItem(cat.code, item.code)">
                             </rb-graphs-part-bar>
-                        </div>                        
+                        </div>                       
                     </div>                    
                 </div>
                 <div
@@ -84,21 +85,76 @@
                             class="col"
                             *ngFor="let item of cat.series">
                             <div
-                                [style.flex-grow]="getTargetBalanceFlex(item)"
-                                [style.flex-shrink]="getTargetBalanceFlex(item)">
+                                [style.flex-grow]="getBalanceFlex(item.altvalue)">
+                            </div>                          
+                            <div
+                                class="altvalue"
+                                *ngIf="item.target != null"
+                                [style.flex-grow]="getAnimatedFlex(item.altvalue)">
+                            </div>                        
+                        </div>
+                    </div>                    
+                </div>                 
+                <div
+                    *ngIf="stacked == false"
+                    class="targets">
+                    <div
+                        class="cat"
+                        *ngFor="let cat of displayCats">
+                        <div
+                            class="col"
+                            *ngFor="let item of cat.series">
+                            <div
+                                [style.flex-grow]="getBalanceFlex(item.target)">
                             </div>                          
                             <div
                                 class="target"
                                 *ngIf="item.target != null"
-                                [style.flex-grow]="getTargetFlex(item)"
-                                [style.flex-shrink]="getTargetFlex(item)">
+                                [style.flex-grow]="getFlex(item.target)">
                             </div>                        
                         </div>
                     </div>                    
-                </div>                
+                </div> 
+                <div
+                    class="targets">
+                    <div
+                        class="cat"
+                        *ngFor="let cat of displayCats">
+                        <div
+                            class="col">
+                            <div
+                                [style.flex-grow]="getBalanceFlex(cat.altvalue)">
+                            </div>                          
+                            <div
+                                class="cataltvalue"
+                                *ngIf="cat.target != null"
+                                [style.flex-grow]="getAnimatedFlex(cat.altvalue)">
+                            </div>  
+                        </div> 
+                    </div>                    
+                </div>                 
+                <div
+                    class="targets">
+                    <div
+                        class="cat"
+                        *ngFor="let cat of displayCats">
+                        <div
+                            class="col">
+                            <div
+                                [style.flex-grow]="getBalanceFlex(cat.target)">
+                            </div>                          
+                            <div
+                                class="cattarget"
+                                *ngIf="cat.target != null"
+                                [style.flex-grow]="getFlex(cat.target)">
+                            </div>  
+                        </div> 
+                    </div>                    
+                </div>                                
             </td>                          
         </tr>
-        <tr>
+        <tr
+            *ngIf="!isTimeSeries">
             <td>
             </td>
             <td>
@@ -107,10 +163,45 @@
                     <div
                         [class]="'xlabel' + (verticalxlabel ? ' xlabelvert' : '')"
                         *ngFor="let label of catOrSeriesLabels">
-                        <p>{{label}}</p>
+                        <p
+                            *ngIf="label != null">
+                            {{label}}
+                        </p>
                     </div>
                 </div>
-            </td>                       
-        </tr>                
+            </td>                     
+        </tr>
+        <tr
+            *ngIf="isTimeSeries && timeTrack1 != null">
+            <td>
+            </td>
+            <td>
+                <div
+                    [class]="'timetrack1' + (timeTrack1[0].alignLeft ? ' timetrackborder' : '')">
+                    <div
+                        [class]="'timetrack1item' + (item.alignLeft ? ' timetrackalignleft' : '')"
+                        *ngFor="let item of timeTrack1"
+                        [style.flex-grow]="item.flex">
+                        {{item.label}}
+                    </div>
+                </div>
+            </td>                   
+        </tr>  
+        <tr
+            *ngIf="isTimeSeries && timeTrack2 != null">
+            <td>
+            </td>
+            <td>
+                <div
+                    [class]="'timetrack2' + (timeTrack2[0].alignLeft ? ' timetrackborder' : '')">
+                    <div
+                        [class]="'timetrack2item' + (item.alignLeft ? ' timetrackalignleft' : '')"
+                        *ngFor="let item of timeTrack2"
+                        [style.flex-grow]="item.flex">
+                        {{item.label}}
+                    </div>
+                </div>
+            </td>                   
+        </tr>                              
     </table>
 </rb-graphs-chartframe>

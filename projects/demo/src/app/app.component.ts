@@ -13,24 +13,28 @@ export class AppComponent implements OnInit  {
       code: "cars",
       label: "Cars",
       value: 14,
+      altvalue: 15,
       target: 16
     },
     {
       code: "planes",
       label: "Planes",
       value: 13,
+      altvalue: 8,
       target: 10
     },
     {
       code:"12",
       label: "Another very long title that it won't fit",
       value: 13.87,
+      altvalue: 24,
       target: 21
     },
     {
       code: "fourth",
       label: "A fourth",
       value: 21.336523,
+      altvalue: 12,
       target: 18.3
     }
   ]
@@ -39,7 +43,9 @@ export class AppComponent implements OnInit  {
     code:"",
     label:"",
     series: this.data,
-    color: undefined
+    color: undefined,
+    altvalue: undefined,
+    target: undefined
   }]; 
 
   multicatdata: CatItem[] = [];
@@ -72,24 +78,28 @@ export class AppComponent implements OnInit  {
           code:schools[j],
           label:schoolLables[j],
           value: Math.floor(Math.random() * 40) / 10,
+          altvalue: Math.floor(Math.random() * 40) / 10,
           target: Math.floor(Math.random() * 40) / 10,
         })
       }
-      let catcode = c;
-      let catlabel = (new Date((new Date()).getTime() + ((c - 30) * 24 * 60 * 60 * 1000))).toISOString();
-      let catcolor = undefined; //c < 4 ? '#ff000088' : '#0000ff88';
-      this.multicatdata.push({code: catcode.toString(), label: catlabel, series: series, color: catcolor});
+      let catlabel = (new Date((new Date()).getTime() + (c * 6 * 60 * 60 * 1000))).toISOString();
+      let catcolor = undefined; 
+      this.multicatdata.push({code: catlabel, label: catlabel, series: series, color: catcolor, altvalue: 10, target: 12});
     }
 
-    let timeCount = 8;
+    let timeCount = 72;
     for(let i = 0; i < timeCount; i++) {
-      let dt = (new Date((new Date()).getTime() + ((i - 30) * 24 * 60 * 60 * 1000)))
+      let dt = (new Date((new Date()).getTime() + (i * 1 * 60 * 60 * 1000)))
       this.timedata.push({
         code: dt.toISOString(),
         label: dt.toISOString(),
         value: 10*Math.random(),
-        target: undefined
+        altvalue: 10,
+        target: 13
       });
+      if(Math.random() > 0.8) {
+        i++;
+      }
     }
   }
 

@@ -11,7 +11,8 @@
             *ngIf="legendposition == 'top'"
             [items]="legend"
             [label]="legendlabel"
-            [row]="true">
+            [row]="true"
+            (select)="filter($event)">
         </rb-graphs-legend>    
     </div>
     <div
@@ -29,7 +30,8 @@
             *ngIf="legendposition == 'bottom'"
             [items]="legend"
             [label]="legendlabel"
-            [row]="true">
+            [row]="true"
+            (select)="filter($event)">
         </rb-graphs-legend>    
     </div>
 </div>
@@ -39,6 +41,7 @@
         *ngIf="legendposition == 'right'"
         [items]="legend"
         [label]="legendlabel"
-        [row]="false">
+        [row]="false"
+        (select)="filter($event)">
     </rb-graphs-legend>    
 </div>

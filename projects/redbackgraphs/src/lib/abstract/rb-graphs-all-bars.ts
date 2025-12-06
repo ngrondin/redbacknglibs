@@ -17,6 +17,7 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     legend: DispayLegendItem[] = [];
     legendLabel: string | undefined = undefined;
     topValue: number = 0;
+    filter: string | null = null;
     
     constructor() {
         super();
@@ -39,34 +40,28 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     }
 
     get barLegendPosition() {
-        /*if(this.displayCats.length == 1 && this.stacked == false) {
-        //if(this.legend.length > 0) {
-          return 'none';
-        } else {
-          return this.legendposition;
-        }*/
        return this.legendposition
+    }
+
+    getFlex(val: number | undefined) : number {
+      return Math.floor((val || 0) * 100);
+    }
+
+    getAnimatedFlex(val: number | undefined) : number {
+      return Math.floor((val || 0) * 100 * this.animatePercent);
+    }
+
+    getBalanceFlex(val: number | undefined) : number {
+      return Math.floor((this.topValue - (val || 0)) * 100);
     }
 
     getStackBalanceFlex(cat: DisplayCat) {
       return Math.floor((this.topValue - cat.series.reduce((acc, val) => acc + val.value, 0)) * 100);
     }
   
-    getBarBalanceFlex(item: DisplayData) {
-      return Math.floor((this.topValue - item.value) * 100);
-    }
-  
-    getTargetFlex(item: DisplayData) {
-      return Math.floor((item.target || 0) * 100 * this.getAnimatePercent());
-    }
-  
-    getTargetBalanceFlex(item: DisplayData) {
-      return Math.floor((this.topValue - (item.target || 0)) * 100);
-    }    
-
     calc() {
       this.calcUniqueCodes();
-      this.calcBars();
+      this.calcData();
       this.calcLegend();
       this.calcLines();
     }
@@ -92,50 +87,68 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
       }
     }
 
-    calcBars() {
+    calcData() {
       this.displayCats = [];
       let max = 0;
       let altcolors = this.stacked ? ["transparent"] : ["transparent", "#ccc5"];
-      for(let cat of this.cats) {
+      for(let i = 0; i < this.cats.length; i++) { 
+        let cat = this.cats[i];
         const displayCat = new DisplayCat(cat.code, cat.label);
         displayCat.color = cat.color != null ? cat.color : altcolors[this.displayCats.length % 2];
+        if(cat.altvalue != null) {
+          displayCat.altvalue = cat.altvalue;
+          if(cat.altvalue > max) max = cat.altvalue;
+        }
+        if(cat.target != null) {
+          displayCat.target = cat.target;
+          if(cat.target > max) max = cat.target;
+        }
         let catValSum = 0;
-        for(let clc of this.uniqueCodes) {
-          let items = cat.series.filter(i => i.code == clc.code);
-          let value = 0;
-          let target = null;
-          for(let item of items) {
-            value += item.value;
-            if(item.target != null) {
-              if(target == null) target = 0;
-              target += item.target;
+        for(var j = 0; j < this.uniqueCodes.length; j++) {
+          let clc = this.uniqueCodes[j];
+          if(this.filter == null || (this.filter != null && this.filter == clc.code)) {
+            let items = cat.series.filter(i => i.code == clc.code);
+            let value = 0;
+            let altvalue = null;
+            let target = null;
+            for(let item of items) {
+              value += item.value;
+              if(item.altvalue != null) {
+                if(altvalue == null) altvalue = 0;
+                altvalue += item.altvalue;
+              }
+              if(item.target != null) {
+                if(target == null) target = 0;
+                target += item.target;
+              }
             }
-          }
-          const displayItem = new DisplayData(clc.code, clc.label, value, clc.color, undefined);
-          if(target != null) displayItem.target = target;
-          displayCat.series.push(displayItem);
-          catValSum += value;
-          if(!this.stacked && value > max) max = value;
-          if(!this.stacked && target != null && target > max) max = target;          
+            const displayItem = new DisplayData(clc.code, clc.label, value, clc.color, undefined);
+            if(altvalue != null) displayItem.altvalue = altvalue;
+            if(target != null) displayItem.target = target;
+            displayCat.series.push(displayItem);
+            catValSum += value;
+            if(!this.stacked && value > max) max = value;
+            if(!this.stacked && altvalue != null && altvalue > max) max = altvalue;   
+            if(!this.stacked && target != null && target > max) max = target;  
+          }       
         }
         if(this.stacked && catValSum > max) max = catValSum;
         this.displayCats.push(displayCat);
       }
       this.topValue = max * 1.1;
-      this.calcLines();
     }
 
     calcLegend() {
       this.legend = [];
       if(this.displayCats.length > 1 || this.stacked == true) {
         this.legendLabel = this.serieslabel;
-        this.legend = this.uniqueCodes.map(clc => new DispayLegendItem(clc.label, clc.color, LegendShape.Square));
+        this.legend = this.uniqueCodes.map(clc => new DispayLegendItem(clc.code, clc.label, clc.color, LegendShape.Square));
       } else if(this.valuetargetlegend != null) {
         this.legendLabel = undefined;
         let valueColor = this.singlecolor != null ? this.singlecolor : (this.colormap != null ? this.colormap[Object.keys(this.colormap)[0]] : this.palette[0]);
         this.legend = [
-          new DispayLegendItem(this.valuetargetlegend.value, valueColor, LegendShape.Square),
-          new DispayLegendItem(this.valuetargetlegend.target, "#880000", LegendShape.Line)
+          new DispayLegendItem(undefined, this.valuetargetlegend.value, valueColor, LegendShape.Square),
+          new DispayLegendItem(undefined, this.valuetargetlegend.target, "#880000", LegendShape.Line)
         ]
       }
     }
@@ -159,5 +172,11 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
           let lastLineLabel = Formatter.format(i * lineDelta, this.format || 'decimal', dec);
           this.lines.push(new DisplayGridLine(lastLineLabel, Math.floor(lineDelta * 100)));
         }
+    }
+
+    setFilter(code: string | null) {
+      console.log('add bars: ' + code);
+      this.filter = code;
+      this.calc();
     }
 }

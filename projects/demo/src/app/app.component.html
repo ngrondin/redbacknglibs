@@ -113,4 +113,23 @@
       </rb-graphs-hbar>
     </div>    
   </div>
+  <div
+    class="row">
+    <div
+      class="cell">
+      <rb-graphs-vbar
+        [data]="timedata"
+        [singlecolor]="'#1C4E80'"
+        [valuelabel]="'Weight'"
+        [serieslabel]="'Date'"
+        [legendposition]="'right'"
+        [verticalxlabels]="true"
+        (selectitem)="select($event)">
+      </rb-graphs-vbar> 
+    </div>
+    <div
+      class="cell">   
+
+    </div>    
+  </div>  
 </div>

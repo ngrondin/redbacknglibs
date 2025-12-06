@@ -35,6 +35,7 @@
 table{
     width: 100%;
     height: 100%;
+    border-collapse: collapse;
 }
 
 td {
@@ -116,6 +117,54 @@ td {
     writing-mode: vertical-lr;
     transform: rotate(180deg);
     justify-content: end;
+    overflow: visible;
+}
+
+.timetrack1 {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+}
+
+.timetrack1item {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    overflow: hidden;
+    width: 0px; 
+}
+
+.timetrack2 {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+}
+
+.timetrack2item {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    overflow: hidden;
+    width: 0px; 
+}
+
+.timetrackborder {
+    border-left: 1px solid lightgray;
+}
+
+.timetrackalignleft {
+    justify-content: start;
+    padding-left: 2px;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
 .cat {
@@ -161,6 +210,17 @@ rb-graphs-part-bar {
     pointer-events: none;
 }
 
+.altvalue {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    max-width: 55px;
+    width: 90%;
+    border-top: 3px solid rgb(0, 189, 0);
+}
+
 .target {
     position: relative;
     display: flex;
@@ -172,3 +232,32 @@ rb-graphs-part-bar {
     border-top: 3px solid rgb(132, 0, 0);
 }
 
+.cataltvalue {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    width: 100%;
+    border-top: 2px solid rgb(0, 189, 0);
+}
+
+.cattarget {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    width: 100%;
+    border-top: 2px solid rgb(132, 0, 0);
+}
+
+.cataltvalue {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    width: 100%;
+    border-top: 2px solid rgb(0, 189, 0);
+}

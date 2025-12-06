@@ -8,8 +8,9 @@
     <div
         [class]="row == true ? 'legendbody-h' : 'legendbody-v'">
         <div
-            class="legenditem"
-            *ngFor="let item of items">
+            *ngFor="let item of items"
+            [class]="'legenditem' + (item.code != null ? ' legenditem-active' : '') + (selected != null && selected != item.code ? ' legenditem-active-greyed' : '')"
+            (click)="click(item)">
             <div
                 *ngIf="item.shape == 0"
                 class="legendsquare"

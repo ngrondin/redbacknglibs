@@ -199,6 +199,37 @@ rb-graphs-part-bar {
     flex: 1 1 0;
     max-height: 55px;
     height: 90%;
+    border-right: 3px solid rgb(0, 189, 0);
+}
+
+.target {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+    max-height: 55px;
+    height: 90%;
     border-right: 3px solid rgb(132, 0, 0);
 }
 
+
+.cataltvalue {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+    height: 100%;
+    border-right: 2px solid rgb(0, 189, 0);
+}
+
+.cattarget {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 0;
+    height: 100%;
+    border-right: 2px solid rgb(132, 0, 0);
+}

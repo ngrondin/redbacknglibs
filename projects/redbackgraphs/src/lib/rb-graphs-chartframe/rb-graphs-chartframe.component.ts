@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DispayLegendItem } from '../datamodel';
 
 @Component({
@@ -12,10 +12,15 @@ export class RbGraphsChartframeComponent implements OnInit {
   @Input('legendlabel') legendlabel: string | undefined = undefined;
   @Input('legendposition') legendposition: string = 'right';
   @Input('legend') legend: DispayLegendItem[] = [];
+
+  @Output('filter') filterEmitter = new EventEmitter<string | null>();
   
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  filter(code: string | null) {
+    this.filterEmitter.emit(code);
+  }
 }

@@ -4,12 +4,14 @@ export class DataItem {
   code: string | undefined;
   label: string;
   value: number;
+  altvalue: number | undefined;
   target: number | undefined;
 
-  constructor(c: string, l: string, v: number, t: number) {
+  constructor(c: string, l: string, v: number, av: number | undefined, t: number | undefined) {
       this.code = c;
       this.label = l;
       this.value = v;
+      this.altvalue = av;
       this.target = t;
   }
 }
@@ -19,12 +21,16 @@ export class CatItem {
   label: string;
   series: DataItem[];
   color: string | undefined;
+  altvalue: number | undefined;
+  target: number | undefined;
 
-  constructor(c: string | undefined, l: string, s: DataItem[], clr?: string | undefined) {
+  constructor(c: string | undefined, l: string, s: DataItem[], clr?: string | undefined, av?: number | undefined, t?: number | undefined) {
     this.code = c;
     this.label = l;
     this.series = s;
     this.color = clr;
+    this.altvalue = av;
+    this.target = t;
   }
 }
 
@@ -32,6 +38,7 @@ export class DisplayData {
   code: string | undefined;
   label: string;
   value: number;
+  altvalue: number | undefined;
   target: number | undefined;
   color: string;
   onColor: string | undefined;
@@ -51,6 +58,8 @@ export class DisplayCat {
   label: string;
   series: DisplayData[];
   color: string | undefined;
+  altvalue: number | undefined;
+  target: number | undefined;
 
   constructor(c: string | undefined, l: string) {
     this.code = c;
@@ -77,11 +86,13 @@ export enum LegendShape {
 }
 
 export class DispayLegendItem {
+  code: string | undefined;
   label: string;
   color: string;
   shape: LegendShape
 
-  constructor(l:string, col: string, s: LegendShape) {
+  constructor(c: string | undefined, l:string, col: string, s: LegendShape) {
+    this.code = c;
     this.label = l;
     this.color = col;
     this.shape = s;
@@ -95,5 +106,17 @@ export class DisplayGridLine {
   constructor(l: string, f: number) {
     this.label = l;
     this.flex = f;
+  }
+}
+
+export class TimeTrackItem {
+  label: string;
+  flex: number;
+  alignLeft: boolean;
+
+  constructor(l: string, f: number, al: boolean) {
+    this.label = l;
+    this.flex = f;
+    this.alignLeft = al;
   }
 }
