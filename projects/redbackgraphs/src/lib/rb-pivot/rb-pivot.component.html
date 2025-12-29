@@ -1,0 +1,31 @@
+<table>
+    <tr>
+        <td></td>
+        <td
+            *ngFor="let clc of uniqueCodes; let i = index"
+            [class]="'labelcell' + (i == 0 ? ' topleftrounded' : i == uniqueCodes.length - 1 ? ' toprightrounded' : '')">
+            <p
+                [class]="'label'">
+                {{clc.label}}
+            </p>
+        </td>
+    </tr>
+    <tr
+        *ngFor="let cat of displayCats; let j = index">
+        <td
+            [class]="'catlabelcell' + (j == 0 ? ' topleftrounded' : j == displayCats.length - 1 ? ' bottomleftrounded' : '')">
+            <p
+                class="catlabel">
+                {{cat.label}}
+            </p>
+        </td>
+        <td
+            *ngFor="let item of cat.series"
+            class="valuecell">
+            <p
+                class="value">
+                {{formatValue(item.value)}}
+            </p>
+        </td>
+    </tr>
+</table>

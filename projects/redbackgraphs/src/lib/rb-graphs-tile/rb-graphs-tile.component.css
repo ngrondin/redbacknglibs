@@ -31,9 +31,14 @@
     white-space: nowrap;
 }
 
-.valuesvg {
+/*.value span {
+    color: white;
+    filter: brightness(80%);
+}*/
+
+/*.valuesvg {
     font-size: 85px;
-}
+}*/
 
 .label {
     display: flex;

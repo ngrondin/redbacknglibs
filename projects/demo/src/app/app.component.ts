@@ -52,6 +52,8 @@ export class AppComponent implements OnInit  {
 
   timedata: DataItem[] = [];
 
+  durdata: DataItem[] = [];
+
   colormap={
     "cars":"red",
     "planes":"blue",
@@ -94,12 +96,22 @@ export class AppComponent implements OnInit  {
         code: dt.toISOString(),
         label: dt.toISOString(),
         value: 10*Math.random(),
-        altvalue: 10,
-        target: 13
+        altvalue: 10*Math.random(),
+        target: undefined
       });
       if(Math.random() > 0.8) {
         i++;
       }
+    }
+
+    for(let i = 0; i < 5; i++) {
+      this.durdata.push({
+        code:"dur" + i,
+        label:"dur" + i,
+        value: Math.random() * (48*3600000),
+        altvalue: undefined,
+        target: undefined
+      })
     }
   }
 

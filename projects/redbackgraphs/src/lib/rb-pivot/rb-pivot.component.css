@@ -1,0 +1,70 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+table {
+    height: fit-content;
+    border-collapse: collapse;
+}
+
+tr {
+    height: fit-content;
+}
+
+td {
+    height: fit-content;
+    /*border: 1px solid #ccc;*/
+}
+
+.labelcell {
+    padding: 10px 10px;
+    background-color: #0277bc;
+}
+
+.label {
+    margin: 0px;
+    color: #ddd;
+    font-size: 0.75em;
+}
+
+.catlabelcell {
+    background-color: #0277bc;
+}
+
+.catlabel {
+    max-width: 10vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0px;
+    color: #ddd;
+    font-size: 0.75em;
+    padding: 4px 5px;
+}
+
+.valuecell {
+    text-align: right;
+    padding: 1px 4px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.value {
+    margin: 0px;
+    line-height: 1.5em;
+    font-size: 0.9em;
+}
+
+.toprightrounded {
+    border-top-right-radius: 3px;
+}
+
+.topleftrounded {
+    border-top-left-radius: 3px;
+}
+
+.bottomleftrounded {
+    border-bottom-left-radius: 3px;
+}

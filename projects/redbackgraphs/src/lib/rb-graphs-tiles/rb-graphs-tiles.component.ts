@@ -5,6 +5,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 
 import { DataItem, DisplayCat, DisplayData } from '../datamodel';
 import { RbGraphsAll } from '../abstract/rb-graphs-all';
+import { Formatter } from '../utils';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class RbGraphsTilesComponent extends RbGraphsAll {
   @Input('rows') rows: number = 3;
   @Input('valuecolorrange') valuecolorrange: {from: number, to:number, color:string, oncolor:string}[] | undefined;
   @Input('fullcolor') fullcolor: boolean = false;
+
+  valueFontSize: number = 3;
 
   constructor() {
     super();
@@ -35,6 +38,7 @@ export class RbGraphsTilesComponent extends RbGraphsAll {
   }
 
   calc() {
+    let maxValueWidth = 0;
     this.displayCats = [];
     if(this.cats.length > 0) {
       let cat = this.cats[0];
@@ -57,11 +61,20 @@ export class RbGraphsTilesComponent extends RbGraphsAll {
         if(color == null) {
           color = this.palette[i % this.palette.length]
         }
+        let valueWidth = this.estimateTextWidth(Formatter.format(value, this.format));
+        maxValueWidth = Math.max(maxValueWidth, valueWidth);
         displayCat.series.push(new DisplayData(item.code, item.label, value, color, onColor));
       }
       this.displayCats.push(displayCat);
     }
-    
-    
+    console.log(maxValueWidth);
+    this.valueFontSize = Math.min(4, 80/maxValueWidth); 
+  }
+      
+  estimateTextWidth(str: string): number {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    const metrics = context!.measureText(str);
+    return metrics.width;
   }
 }

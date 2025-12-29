@@ -1,5 +1,5 @@
 import { Component, Directive, EventEmitter, Input, OnInit, Output, SimpleChanges } from "@angular/core";
-import { CatItem, DataItem, DisplayCat, TimeTrackItem } from "../datamodel";
+import { CatItem, CodeLabelColor, DataItem, DisplayCat, TimeTrackItem } from "../datamodel";
 
 @Component({template: ''})
 export abstract class RbGraphsAll implements OnInit {
@@ -35,6 +35,9 @@ export abstract class RbGraphsAll implements OnInit {
   animatePercent: number = 0;
   animateStart: number | null = null;
 
+  uniqueCodes: CodeLabelColor[] = [];
+  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -42,7 +45,29 @@ export abstract class RbGraphsAll implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.calcUniqueCodes();
     this.calc();
+  }
+
+  calcUniqueCodes() {
+    this.uniqueCodes = [];
+    for(let cat of this.cats) {
+      for(let item of cat.series) {
+        let code = item.code ?? "";
+        let color = "transparent";
+        let unique = this.uniqueCodes.find(l => l.code == code);
+        if(unique == null) {
+          if(this.singlecolor != null) {
+            color = this.singlecolor;
+          } else if(this.colormap != null) {
+            color = this.colormap[code];
+          } else {
+            color = this.palette[Object.keys(this.uniqueCodes).length % this.palette.length];
+          }
+          this.uniqueCodes.push(new CodeLabelColor(code, item.label, color)); 
+        }
+      }  
+    }
   }
 
   abstract calc(): any;
@@ -129,11 +154,11 @@ export abstract class RbGraphsAll implements OnInit {
       this.animateStart = ts;
     } 
     let elapse = ts - this.animateStart;
-    if(elapse > 700) {
-      let linearProgress = (elapse - 700) / 1000;
+    if(elapse > 200) {
+      let linearProgress = (elapse - 200) / 1000;
       this.animatePercent = linearProgress * linearProgress * (3.0 - (2.0 * linearProgress));
     }
-    if(elapse < 1700) {
+    if(elapse < 1200) {
       requestAnimationFrame((ts) => this.animate(ts));
     } else {
       this.animatePercent = 1;

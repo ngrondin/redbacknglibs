@@ -14,6 +14,7 @@ export class RbGraphsTileComponent implements OnInit {
   @Input('onColor') _onColor: string | undefined;
   @Input('fullcolor') fullcolor: boolean = false;
   @Input('format') format: string | undefined = undefined;
+  @Input('fontsize') fontSize: number = 1;
 
   _defaultBackColor = "#042438";
 
@@ -75,7 +76,8 @@ export class RbGraphsTileComponent implements OnInit {
     let w = 0;
     for(let i = 0; i < str.length; i++) {
       if(str.charAt(i) == '.') w += 3.1;
-      else w += 6.2;
+      else if(str.charAt(i) == ' ') w += 8.0;
+      else w += 7.2;
     }
     return w;
   }

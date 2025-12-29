@@ -8,6 +8,7 @@ import { RbGraphsLegendComponent } from './rb-graphs-legend/rb-graphs-legend.com
 import { RbGraphsChartframeComponent } from './rb-graphs-chartframe/rb-graphs-chartframe.component';
 import { RbGraphsHbarComponent } from './rb-graphs-hbar/rb-graphs-hbar.component';
 import { RbGraphsPartBarComponent } from './rb-graphs-part-bar/rb-graphs-part-bar.component';
+import { RbPivotComponent } from './rb-pivot/rb-pivot.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RbGraphsPartBarComponent } from './rb-graphs-part-bar/rb-graphs-part-ba
     RbGraphsLegendComponent,
     RbGraphsChartframeComponent,
     RbGraphsHbarComponent,
-    RbGraphsPartBarComponent
+    RbGraphsPartBarComponent,
+    RbPivotComponent
   ],
   imports: [
     CommonModule
@@ -30,7 +32,8 @@ import { RbGraphsPartBarComponent } from './rb-graphs-part-bar/rb-graphs-part-ba
     RbGraphsTileComponent,
     RbGraphsVBarComponent,
     RbGraphsHbarComponent,
-    RbGraphsChartframeComponent
+    RbGraphsChartframeComponent,
+    RbPivotComponent
   ]
 })
 export class RedbackgraphsModule { }

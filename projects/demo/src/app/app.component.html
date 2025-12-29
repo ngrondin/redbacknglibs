@@ -129,7 +129,10 @@
     </div>
     <div
       class="cell">   
-
+      <rb-pivot
+        [data]="multicatdata"
+        (selectitem)="select($event)">
+      </rb-pivot> 
     </div>    
   </div>  
 </div>

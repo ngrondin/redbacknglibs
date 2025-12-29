@@ -13,7 +13,6 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     @Input('valuetargetlegend') valuetargetlegend: any;
   
     lines: DisplayGridLine[] = []
-    uniqueCodes: CodeLabelColor[] = [];
     legend: DispayLegendItem[] = [];
     legendLabel: string | undefined = undefined;
     topValue: number = 0;
@@ -60,31 +59,9 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     }
   
     calc() {
-      this.calcUniqueCodes();
       this.calcData();
       this.calcLegend();
       this.calcLines();
-    }
-
-    calcUniqueCodes() {
-      this.uniqueCodes = [];
-      for(let cat of this.cats) {
-        for(let item of cat.series) {
-          let code = item.code ?? "";
-          let color = "transparent";
-          let unique = this.uniqueCodes.find(l => l.code == code);
-          if(unique == null) {
-            if(this.singlecolor != null) {
-              color = this.singlecolor;
-            } else if(this.colormap != null) {
-              color = this.colormap[code];
-            } else {
-              color = this.palette[Object.keys(this.uniqueCodes).length % this.palette.length];
-            }
-            this.uniqueCodes.push(new CodeLabelColor(code, item.label, color)); 
-          }
-        }  
-      }
     }
 
     calcData() {
