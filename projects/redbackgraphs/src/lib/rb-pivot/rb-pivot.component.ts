@@ -9,6 +9,7 @@ import { Formatter } from '../utils';
   styleUrls: ['./rb-pivot.component.css']
 })
 export class RbPivotComponent extends RbGraphsAll {
+  sums: number[] = [];
 
   constructor() {
     super();
@@ -20,6 +21,7 @@ export class RbPivotComponent extends RbGraphsAll {
 
   calcData() {
     this.displayCats = [];
+    this.sums = this.uniqueCodes.map(clc => 0);
     for(let i = 0; i < this.cats.length; i++) { 
       let cat = this.cats[i];
       const displayCat = new DisplayCat(cat.code, cat.label);
@@ -48,10 +50,12 @@ export class RbPivotComponent extends RbGraphsAll {
         if(target != null) displayItem.target = target;
         displayCat.series.push(displayItem);
         catValSum += value;
+        this.sums[j] += value;
             
       }
       this.displayCats.push(displayCat);
     }
+    this.sums = this.sums.map(s => Math.round(s * 10000) / 10000); //This is to avoid the javascript innacuracies in adding numbers.
   }
 
   formatValue(val: number) : string {

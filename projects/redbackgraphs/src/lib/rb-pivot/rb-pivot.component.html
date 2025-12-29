@@ -28,4 +28,15 @@
             </p>
         </td>
     </tr>
+    <tr>
+        <td></td>
+        <td
+            *ngFor="let sum of sums; let i = index"
+            [class]="'sumcell' + (i == 0 ? ' firstsumcell' : '')">
+            <p
+                [class]="'sum'">
+                {{formatValue(sum)}}
+            </p>
+        </td>
+    </tr>    
 </table>
