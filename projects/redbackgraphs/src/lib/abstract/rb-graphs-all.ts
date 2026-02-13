@@ -7,7 +7,7 @@ export abstract class RbGraphsAll implements OnInit {
   @Input('colormap') colormap: any;
   @Input('singlecolor') singlecolor: string | undefined = undefined;
   @Input('format') format: string | undefined = undefined;
-  @Output('selectitem') selectitem = new EventEmitter<any>();
+  @Input('codeorder') codeorder: string | undefined = undefined;
   @Input('data') set data(value: CatItem[] | DataItem[]) {
     if(value != null) {
       if(value.length > 0 && !value[0].hasOwnProperty('series')) {
@@ -24,6 +24,7 @@ export abstract class RbGraphsAll implements OnInit {
       this.cats = [];
     }
   }
+  @Output('selectitem') selectitem = new EventEmitter<any>();
 
   cats: CatItem[] = [];
   displayCats: DisplayCat[] = [];
@@ -67,6 +68,10 @@ export abstract class RbGraphsAll implements OnInit {
           this.uniqueCodes.push(new CodeLabelColor(code, item.label, color)); 
         }
       }  
+    }
+    if(this.codeorder != null) {
+      let co = this.codeorder.split(",");
+      this.uniqueCodes.sort((a, b) => co.indexOf(a.code || "") - co.indexOf(b.code || ""));
     }
   }
 
