@@ -8,7 +8,7 @@ Run `ng build --configuration production redbackgraphs` to build the project. Th
 
 ## Publishing
 
-After building your library with the build command above, go to the dist folder `cd dist/redbackgraphs` and run `npm publish`.
+After building your library with the build command above, go to the dist folder `cd dist/redbackgraphs` , login with `npm login` and then run `npm publish`.
 
 ## Running unit tests
 

@@ -14,28 +14,32 @@ export class AppComponent implements OnInit  {
       label: "Cars",
       value: 14,
       altvalue: 15,
-      target: 16
+      target: 16,
+      color: undefined
     },
     {
       code: "planes",
       label: "Planes",
       value: 13,
       altvalue: 8,
-      target: 10
+      target: 10,
+      color: undefined
     },
     {
       code:"12",
       label: "Another very long title that it won't fit",
       value: 13.87,
       altvalue: 24,
-      target: 21
+      target: 21,
+      color: undefined
     },
     {
       code: "fourth",
       label: "A fourth",
       value: 21.336523,
       altvalue: 12,
-      target: 18.3
+      target: 18.3,
+      color: undefined
     }
   ]
 
@@ -76,12 +80,14 @@ export class AppComponent implements OnInit  {
       let seriesCount = Math.floor(Math.random() * schools.length);
       let series: DataItem[] = [];
       for(let j = 0; j < seriesCount; j++) {
+        let value = Math.floor(Math.random() * 40) / 10;
         series.push({
           code:schools[j],
           label:schoolLables[j],
-          value: Math.floor(Math.random() * 40) / 10,
+          value: value,
           altvalue: Math.floor(Math.random() * 40) / 10,
           target: Math.floor(Math.random() * 40) / 10,
+          color: value < 1 ? 'red' : undefined
         })
       }
       let catlabel = (new Date((new Date()).getTime() + (c * 6 * 60 * 60 * 1000))).toISOString();
@@ -97,7 +103,8 @@ export class AppComponent implements OnInit  {
         label: dt.toISOString(),
         value: 10*Math.random(),
         altvalue: 10*Math.random(),
-        target: undefined
+        target: undefined,
+        color: undefined
       });
       if(Math.random() > 0.8) {
         i++;
@@ -110,7 +117,8 @@ export class AppComponent implements OnInit  {
         label:"dur" + i,
         value: Math.random() * (48*3600000),
         altvalue: undefined,
-        target: undefined
+        target: undefined,
+        color: undefined
       })
     }
   }

@@ -96,7 +96,7 @@ export abstract class RbGraphsAll implements OnInit {
         let dt = dates.find(d => d.getTime() == cur);
         if(dt == null) {
           if(type == 'series') {
-            arr.push({code: new Date(cur).toISOString(), label: new Date(cur).toISOString(), value: 0, altvalue: undefined, target: undefined});
+            arr.push({code: new Date(cur).toISOString(), label: new Date(cur).toISOString(), value: 0, altvalue: undefined, target: undefined, color: undefined});
           } else if(type == 'cats') {
             arr.push({code: new Date(cur).toISOString(), label: new Date(cur).toISOString(), series: [], color: undefined, altvalue: undefined, target: undefined});
           }

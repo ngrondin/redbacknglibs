@@ -6,13 +6,15 @@ export class DataItem {
   value: number;
   altvalue: number | undefined;
   target: number | undefined;
+  color: string | undefined;
 
-  constructor(c: string, l: string, v: number, av: number | undefined, t: number | undefined) {
+  constructor(c: string, l: string, v: number, av: number | undefined, t: number | undefined, clr: string | undefined) {
       this.code = c;
       this.label = l;
       this.value = v;
       this.altvalue = av;
       this.target = t;
+      this.color = clr;
   }
 }
 

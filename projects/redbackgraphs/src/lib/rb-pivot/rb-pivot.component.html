@@ -21,6 +21,7 @@
         </td>
         <td
             *ngFor="let item of cat.series"
+            [style.background-color]="item.color"
             class="valuecell">
             <p
                 class="value">

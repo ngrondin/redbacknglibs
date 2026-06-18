@@ -34,6 +34,7 @@ export class RbPivotComponent extends RbGraphsAll {
         let value = 0;
         let altvalue = null;
         let target = null;
+        let color = 'transparent';
         for(let item of items) {
           value += item.value;
           if(item.altvalue != null) {
@@ -44,8 +45,11 @@ export class RbPivotComponent extends RbGraphsAll {
             if(target == null) target = 0;
             target += item.target;
           }
+          if(item.color != null) {
+            color = item.color;
+          }
         }
-        const displayItem = new DisplayData(clc.code, clc.label, value, clc.color, undefined);
+        const displayItem = new DisplayData(clc.code, clc.label, value, color, undefined);
         if(altvalue != null) displayItem.altvalue = altvalue;
         if(target != null) displayItem.target = target;
         displayCat.series.push(displayItem);
