@@ -11,6 +11,7 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     @Input('stacked') stacked: boolean = false;
     @Input('legendposition') legendposition: string = 'right';
     @Input('valuetargetlegend') valuetargetlegend: any;
+    @Input('topvalue') _topvalue?: number;
   
     lines: DisplayGridLine[] = []
     legend: DispayLegendItem[] = [];
@@ -112,7 +113,7 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
         if(this.stacked && catValSum > max) max = catValSum;
         this.displayCats.push(displayCat);
       }
-      this.topValue = max * 1.1;
+      this.topValue = this._topvalue != null ? this._topvalue : max * 1.1;
     }
 
     calcLegend() {
@@ -152,7 +153,6 @@ export abstract class RbGraphsAllBars extends RbGraphsAll {
     }
 
     setFilter(code: string | null) {
-      console.log('add bars: ' + code);
       this.filter = code;
       this.calc();
     }

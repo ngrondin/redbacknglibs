@@ -67,7 +67,6 @@ export class RbGraphsTilesComponent extends RbGraphsAll {
       }
       this.displayCats.push(displayCat);
     }
-    console.log(maxValueWidth);
     this.valueFontSize = Math.min(4, 80/maxValueWidth); 
   }
       
