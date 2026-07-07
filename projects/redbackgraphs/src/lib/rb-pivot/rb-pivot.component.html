@@ -29,7 +29,8 @@
             </p>
         </td>
     </tr>
-    <tr>
+    <tr
+        *ngIf="showsum">
         <td></td>
         <td
             *ngFor="let sum of sums; let i = index"

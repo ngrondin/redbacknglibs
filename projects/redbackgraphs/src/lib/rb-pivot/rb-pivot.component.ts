@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Host, HostBinding, Input } from '@angular/core';
 import { DisplayCat, DisplayData } from '../datamodel';
 import { RbGraphsAll } from '../abstract/rb-graphs-all';
 import { Formatter } from '../utils';
@@ -9,6 +9,9 @@ import { Formatter } from '../utils';
   styleUrls: ['./rb-pivot.component.css']
 })
 export class RbPivotComponent extends RbGraphsAll {
+  @Input('showsum') showsum: boolean = true;
+  @Input('fontsize') fontsize: any;
+  
   sums: number[] = [];
 
   constructor() {
@@ -64,5 +67,9 @@ export class RbPivotComponent extends RbGraphsAll {
 
   formatValue(val: number) : string {
     return Formatter.format(val, this.format);
+  }
+
+  @HostBinding('style.fontSize') get fontSizeBinding() {
+    return this.fontsize != null ? this.fontsize : 'inherit';
   }
 }
