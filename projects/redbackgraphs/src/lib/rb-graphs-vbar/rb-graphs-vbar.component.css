@@ -261,3 +261,60 @@ rb-graphs-part-bar {
     width: 100%;
     border-top: 2px solid rgb(0, 189, 0);
 }
+/* Hover labels for the average and target reference bars.
+   The .targets overlays ignore pointer events so the bars stay clickable;
+   the .refhover strip sits only on the line itself and re-enables them. */
+.refhover {
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    height: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.reflabel {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background: #181a16cc;
+    border-radius: 4px;
+    padding: 5px;
+    width: fit-content;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 5px;
+    z-index: 1;
+}
+
+.reflabel:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    width: 0;
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: #181a16cc transparent;
+}
+
+.refhover:hover .reflabel {
+    display: flex;
+}
+
+.reflabelname {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.6em;
+}
+
+.reflabelvalue {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.8em;
+}
