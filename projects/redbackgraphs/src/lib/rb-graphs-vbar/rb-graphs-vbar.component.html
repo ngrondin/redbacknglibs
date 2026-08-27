@@ -91,6 +91,20 @@
                                 class="altvalue"
                                 *ngIf="item.altvalue != null"
                                 [style.flex-grow]="getAnimatedFlex(item.altvalue)">
+                                <div
+                                    class="refhover">
+                                    <div
+                                        class="reflabel">
+                                        <div
+                                            class="reflabelname">
+                                            {{altValueLabel}}
+                                        </div>
+                                        <div
+                                            class="reflabelvalue">
+                                            {{refValueStr(item.altvalue)}}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>                        
                         </div>
                     </div>                    
@@ -111,6 +125,20 @@
                                 class="target"
                                 *ngIf="item.target != null"
                                 [style.flex-grow]="getFlex(item.target)">
+                                <div
+                                    class="refhover">
+                                    <div
+                                        class="reflabel">
+                                        <div
+                                            class="reflabelname">
+                                            {{targetLabel}}
+                                        </div>
+                                        <div
+                                            class="reflabelvalue">
+                                            {{refValueStr(item.target)}}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>                        
                         </div>
                     </div>                    
@@ -129,6 +157,20 @@
                                 class="cataltvalue"
                                 *ngIf="cat.altvalue != null"
                                 [style.flex-grow]="getAnimatedFlex(cat.altvalue)">
+                                <div
+                                    class="refhover">
+                                    <div
+                                        class="reflabel">
+                                        <div
+                                            class="reflabelname">
+                                            {{altValueLabel}}
+                                        </div>
+                                        <div
+                                            class="reflabelvalue">
+                                            {{refValueStr(cat.altvalue)}}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>  
                         </div> 
                     </div>                    
@@ -147,6 +189,20 @@
                                 class="cattarget"
                                 *ngIf="cat.target != null"
                                 [style.flex-grow]="getFlex(cat.target)">
+                                <div
+                                    class="refhover">
+                                    <div
+                                        class="reflabel">
+                                        <div
+                                            class="reflabelname">
+                                            {{targetLabel}}
+                                        </div>
+                                        <div
+                                            class="reflabelvalue">
+                                            {{refValueStr(cat.target)}}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>  
                         </div> 
                     </div>                    
